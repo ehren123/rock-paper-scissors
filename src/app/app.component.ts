@@ -33,6 +33,19 @@ export class AppComponent {
     console.log(round);
 
     newGame.rounds.push(round);
+    newGame.rounds.push(round);
+    newGame.rounds.push(round);
+    newGame.rounds.push(round);
+
+    const round2: Round = {
+      player1Selection: RockPaperScissorsType.Scissors,
+      player2Selection: RockPaperScissorsType.Paper,
+      created: new Date(),
+    }
+
+    GameUtility.setWinner(round2);
+
+    newGame.rounds.push(round2);
 
     let games = GameUtility.getSavedGames();
     console.log(games);
@@ -51,5 +64,8 @@ export class AppComponent {
 
     games = GameUtility.getSavedGames();
     console.log(games);
+
+    const score = GameUtility.getScore(newGame);
+    console.log(score);
   }
 }
