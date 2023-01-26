@@ -9,6 +9,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { PlayerVersusComputerComponent } from './components/player-versus-computer/player-versus-computer.component';
 import { ResultsComponent } from './components/results/results.component';
 import { PlayerVersusPlayerComponent } from './components/player-versus-player/player-versus-player.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { PlayerVersusPlayerComponent } from './components/player-versus-player/p
     PlayerVersusComputerComponent,
     ResultsComponent,
     PlayerVersusPlayerComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
