@@ -79,4 +79,24 @@ export class GameUtility {
     public static clearSavedGames(): void {
         store.remove(this._gameStoryKey);
     }
+
+    public static getScore(): number[] {
+        let gamesFromStore = store(this._gameStoryKey) as Game[];
+        if (gamesFromStore) {
+            let player1Score = 0;
+            let player2Score = 0;
+            gamesFromStore.forEach(game => {
+                game.rounds.forEach(round => {
+                    if (round.winner === 1) {
+                        player1Score++;
+                    }
+                    if (round.winner === 2) {
+                        player2Score++;
+                    }
+                });
+            });
+            return [player1Score, player2Score];
+        }
+        return [0, 0];
+    }
 }
