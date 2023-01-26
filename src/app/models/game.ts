@@ -8,4 +8,5 @@ export interface Game {
     player1Type: PlayerType;
     player2Type: PlayerType;
     rounds: Round[];
+    created: Date
 }

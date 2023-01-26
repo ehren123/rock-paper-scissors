@@ -1,4 +1,6 @@
 
+import { orderBy } from "lodash";
+import store from "store2";
 import { v4 as uuidv4 } from "uuid";
 import { Game } from "../models/game";
 import { PlayerType } from "../models/player-type";
@@ -13,7 +15,8 @@ export class GameUtility {
             player2Name: player2Name,
             player1Type: PlayerType.Person,
             player2Type: PlayerType.Computer,
-            rounds: []
+            rounds: [],
+            created: new Date()
         };
     }
 
@@ -36,5 +39,29 @@ export class GameUtility {
             return 1;
         }
         return 2;
-    }    
+    }
+    
+    public static saveGame(game: Game): void {
+        let games: Game[] = [];
+        let gamesFromStore = store("games") as Game[];
+        if (gamesFromStore) {
+            games = gamesFromStore;
+        }
+        games.push(game);
+        games = orderBy(games, ["created"], ["desc"]);
+        store("games", games);
+    }
+
+    public static getSavedGames(): Game[] {
+        let gamesFromStore = store("games") as Game[];
+        return gamesFromStore ?? [];
+    }
+
+    public static deleteGame(gameId: string): void {
+        let gamesFromStore = store("games") as Game[];
+        if (gamesFromStore) {
+            const games = gamesFromStore.filter(x => x.id !== gameId);
+            store("games", games);
+        }
+    }
 }
