@@ -30,5 +30,25 @@ export class AppComponent {
     GameUtility.setWinner(round);
 
     console.log(round);
+
+    newGame.rounds.push(round);
+
+    let games = GameUtility.getSavedGames();
+    console.log(games);
+
+    GameUtility.saveGame(newGame);
+
+    games = GameUtility.getSavedGames();
+    console.log(games);
+
+    GameUtility.deleteGame(newGame.id);
+
+    games = GameUtility.getSavedGames();
+    console.log(games);
+
+    GameUtility.clearSavedGames();
+
+    games = GameUtility.getSavedGames();
+    console.log(games);
   }
 }
