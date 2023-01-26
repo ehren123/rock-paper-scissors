@@ -20,52 +20,10 @@ export class AppComponent {
     const newGame = GameUtility.newGame("Player 1", "Player 2", PlayerType.Person, PlayerType.Person);
     console.log(newGame);
 
-    const round: Round = {
-      player1Selection: RockPaperScissorsType.Rock,
-      player2Selection: RockPaperScissorsType.Paper,
-      created: new Date(),
-    }
+    GameUtility.addRound(newGame, RockPaperScissorsType.Rock, RockPaperScissorsType.Paper);
+    GameUtility.addRound(newGame, RockPaperScissorsType.Rock, RockPaperScissorsType.Paper);
+    GameUtility.addRound(newGame, RockPaperScissorsType.Scissors, RockPaperScissorsType.Paper);
 
-    console.log(round);
-
-    GameUtility.setWinner(round);
-
-    console.log(round);
-
-    newGame.rounds.push(round);
-    newGame.rounds.push(round);
-    newGame.rounds.push(round);
-    newGame.rounds.push(round);
-
-    const round2: Round = {
-      player1Selection: RockPaperScissorsType.Scissors,
-      player2Selection: RockPaperScissorsType.Paper,
-      created: new Date(),
-    }
-
-    GameUtility.setWinner(round2);
-
-    newGame.rounds.push(round2);
-
-    let games = GameUtility.getSavedGames();
-    console.log(games);
-
-    GameUtility.saveGame(newGame);
-
-    games = GameUtility.getSavedGames();
-    console.log(games);
-
-    // GameUtility.deleteGame(newGame.id);
-
-    games = GameUtility.getSavedGames();
-    console.log(games);
-
-    // GameUtility.clearSavedGames();
-
-    games = GameUtility.getSavedGames();
-    console.log(games);
-
-    const score = GameUtility.getScore(newGame);
-    console.log(score);
+    console.log(newGame);
   }
 }

@@ -18,8 +18,21 @@ export class GameUtility {
             player1Type: PlayerType.Person,
             player2Type: PlayerType.Computer,
             rounds: [],
-            created: new Date()
+            created: new Date(),
+            player1Score: 0,
+            player2Score: 0,
         };
+    }
+
+    public static addRound(game: Game, player1Selection: RockPaperScissorsType, player2Selection: RockPaperScissorsType): void {
+        const round = {
+            player1Selection: player1Selection,
+            player2Selection: player2Selection,
+            created: new Date(),
+        }
+        GameUtility.setWinner(round);
+        game.rounds.push(round);
+        GameUtility.setScore(game);
     }
 
     public static getComputerSelection(): RockPaperScissorsType {
@@ -80,10 +93,10 @@ export class GameUtility {
         store.remove(this._gameStoryKey);
     }
 
-    public static getScore(Game: Game): number[] {
+    public static setScore(game: Game): void {
         let player1Score = 0;
         let player2Score = 0;
-        Game.rounds.forEach(round => {
+        game.rounds.forEach(round => {
             if (round.winner === 1) {
                 player1Score++;
             }
@@ -91,6 +104,7 @@ export class GameUtility {
                 player2Score++;
             }
         });
-        return [player1Score, player2Score];
+        game.player1Score = player1Score;
+        game.player2Score = player2Score;
     }
 }

@@ -7,6 +7,8 @@ export interface Game {
     player2Name: string;
     player1Type: PlayerType;
     player2Type: PlayerType;
+    player1Score: number;
+    player2Score: number;
     rounds: Round[];
     created: Date
 }
