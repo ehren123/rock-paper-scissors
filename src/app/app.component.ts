@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PlayerType } from './models/player-type';
 import { RockPaperScissorsType } from './models/rock-paper-scissors-type';
-import { GameUtility } from './utilities/game-utility';
+import { GameUtility } from './utilities/game.utility';
 
 @Component({
   selector: 'app-root',
