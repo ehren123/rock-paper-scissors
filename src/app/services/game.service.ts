@@ -32,6 +32,7 @@ export class GameService {
       throw new Error("No game in progress");
     }
 
+    GameUtility.setWinner(round);
     game.rounds.push(round);
     this.setGame(game);    
   }

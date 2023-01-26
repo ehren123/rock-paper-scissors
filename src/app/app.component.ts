@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { round } from 'lodash';
 import { PlayerType } from './models/player-type';
 import { RockPaperScissorsType } from './models/rock-paper-scissors-type';
+import { Round } from './models/round';
 import { GameUtility } from './utilities/game.utility';
 
 @Component({
@@ -18,7 +20,15 @@ export class AppComponent {
     const newGame = GameUtility.newGame("Player 1", "Player 2", PlayerType.Person, PlayerType.Person);
     console.log(newGame);
 
-    const winner = GameUtility.getWinner(RockPaperScissorsType.Scissors, RockPaperScissorsType.Scissors);
-    console.log(winner);
+    const round: Round = {
+      player1Selection: RockPaperScissorsType.Rock,
+      player2Selection: RockPaperScissorsType.Paper
+    }
+
+    console.log(round);
+
+    GameUtility.setWinner(round);
+
+    console.log(round);
   }
 }

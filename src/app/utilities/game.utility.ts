@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Game } from "../models/game";
 import { PlayerType } from "../models/player-type";
 import { RockPaperScissorsType } from "../models/rock-paper-scissors-type";
+import { Round } from "../models/round";
 
 export class GameUtility {
     private static _gameStoryKey = "games";
@@ -40,6 +41,15 @@ export class GameUtility {
             return 1;
         }
         return 2;
+    }
+
+    public static setWinner(round: Round): void {
+        if(Number.isNaN(round.player1Selection) || Number.isNaN(round.player2Selection)) {
+            throw new Error("Invalid round");
+        }
+
+        round.winner = this.getWinner(round.player1Selection as RockPaperScissorsType, 
+            round.player2Selection as RockPaperScissorsType);
     }
     
     public static saveGame(game: Game): void {
