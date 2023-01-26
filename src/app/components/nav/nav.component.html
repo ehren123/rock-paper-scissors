@@ -1,8 +1,8 @@
 <p>
     <mat-toolbar color="primary">
         <span>Rock paper scissors</span>
-        <button mat-raised-button color="primary" class="menu-button">Player versus player</button>
-        <button mat-raised-button color="primary" class="menu-button">Player versus computer</button>
-        <button mat-raised-button color="primary" class="menu-button">See results</button>
+        <button [routerLink]="['./player-versus-player']" mat-raised-button color="primary" class="menu-button">Player versus player</button>
+        <button [routerLink]="['./player-versus-computer']" mat-raised-button color="primary" class="menu-button">Player versus computer</button>
+        <button [routerLink]="['./results']" mat-raised-button color="primary" class="menu-button">See results</button>
     </mat-toolbar>
   </p>
