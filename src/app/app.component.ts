@@ -22,7 +22,8 @@ export class AppComponent {
 
     const round: Round = {
       player1Selection: RockPaperScissorsType.Rock,
-      player2Selection: RockPaperScissorsType.Paper
+      player2Selection: RockPaperScissorsType.Paper,
+      created: new Date(),
     }
 
     console.log(round);
@@ -41,12 +42,12 @@ export class AppComponent {
     games = GameUtility.getSavedGames();
     console.log(games);
 
-    GameUtility.deleteGame(newGame.id);
+    // GameUtility.deleteGame(newGame.id);
 
     games = GameUtility.getSavedGames();
     console.log(games);
 
-    GameUtility.clearSavedGames();
+    // GameUtility.clearSavedGames();
 
     games = GameUtility.getSavedGames();
     console.log(games);
