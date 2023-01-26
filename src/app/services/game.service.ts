@@ -7,7 +7,7 @@ import { GameUtility } from '../utilities/game.utility';
 @Injectable({
   providedIn: 'root'
 })
-export class RockPaperScissorsService {
+export class GameService {
 
   private _gameSource = new BehaviorSubject<Game | undefined>(undefined);
   public game$ = this._gameSource.asObservable();

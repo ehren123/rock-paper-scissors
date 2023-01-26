@@ -10,6 +10,7 @@ import { PlayerVersusComputerComponent } from './components/player-versus-comput
 import { ResultsComponent } from './components/results/results.component';
 import { PlayerVersusPlayerComponent } from './components/player-versus-player/player-versus-player.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { GameService } from './services/game.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [GameService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
