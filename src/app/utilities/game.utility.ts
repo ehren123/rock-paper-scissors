@@ -8,7 +8,7 @@ import { RockPaperScissorsType } from "../models/rock-paper-scissors-type";
 import { Round } from "../models/round";
 
 export class GameUtility {
-    private static _gameStoryKey = "games";
+    private static _gameStoreKey = "games";
 
     public static newGame(player1Name: string, player2Name: string, player1Type: PlayerType, player2Type: PlayerType): Game{
         return {
@@ -67,30 +67,30 @@ export class GameUtility {
     
     public static saveGame(game: Game): void {
         let games: Game[] = [];
-        let gamesFromStore = store(this._gameStoryKey) as Game[];
+        const gamesFromStore = store(this._gameStoreKey) as Game[];
         if (gamesFromStore) {
             games = gamesFromStore;
         }
         games.push(game);
         games = orderBy(games, ["created"], ["desc"]);
-        store(this._gameStoryKey, games);
+        store(this._gameStoreKey, games);
     }
 
     public static getSavedGames(): Game[] {
-        let gamesFromStore = store(this._gameStoryKey) as Game[];
+        const gamesFromStore = store(this._gameStoreKey) as Game[];
         return gamesFromStore ?? [];
     }
 
     public static deleteGame(gameId: string): void {
-        let gamesFromStore = store(this._gameStoryKey) as Game[];
+        const gamesFromStore = store(this._gameStoreKey) as Game[];
         if (gamesFromStore) {
             const games = gamesFromStore.filter(x => x.id !== gameId);
-            store(this._gameStoryKey, games);
+            store(this._gameStoreKey, games);
         }
     }
 
     public static clearSavedGames(): void {
-        store.remove(this._gameStoryKey);
+        store.remove(this._gameStoreKey);
     }
 
     public static setScore(game: Game): void {

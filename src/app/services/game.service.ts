@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Game } from '../models/game';
+import { PlayerType } from '../models/player-type';
 import { Round } from '../models/round';
 import { GameUtility } from '../utilities/game.utility';
 
@@ -12,8 +13,6 @@ export class GameService {
   private _gameSource = new BehaviorSubject<Game | undefined>(undefined);
   public game$ = this._gameSource.asObservable();
 
-  constructor() { }
-
   public setGame(game: Game) {
     this._gameSource.next(game);
   }
@@ -22,8 +21,13 @@ export class GameService {
     return this._gameSource.value;
   }
 
-  public clearGame() {
+  public clearGame(): void {
     this._gameSource.next(undefined);
+  }
+
+  public newGame(player1Name: string, player2Name: string, player1Type: PlayerType, player2Type: PlayerType): void {
+    const game = GameUtility.newGame(player1Name, player2Name, player1Type, player2Type);
+    this.setGame(game);
   }
 
   public addRound(round: Round) {
@@ -49,7 +53,7 @@ export class GameService {
     GameUtility.clearSavedGames();
   }
 
-  private saveGame() {
+  private saveGame(): void {
     const game = this.getGame();
     if(!game) {
       throw new Error("No game in progress");
