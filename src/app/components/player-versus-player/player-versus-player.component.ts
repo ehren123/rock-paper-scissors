@@ -47,6 +47,7 @@ export class PlayerVersusPlayerComponent implements OnInit, OnDestroy {
   }
 
   setSelection(player: number, selection: RockPaperScissorsType): void {
+    console.log(player, selection);
     if(player === 1) {
       this.player1Selection = selection;
     } else if(player === 2) {
@@ -57,7 +58,7 @@ export class PlayerVersusPlayerComponent implements OnInit, OnDestroy {
   }
 
   addRound(): void {
-    if(this.game && this.player1Selection && this.player2Selection) {
+    if(this.game && this.player1Selection !== undefined && this.player2Selection !== undefined) {
       this.gameService.addRound(this.player1Selection, this.player2Selection);
       this.player1Selection = undefined;
       this.player2Selection = undefined;
@@ -65,9 +66,9 @@ export class PlayerVersusPlayerComponent implements OnInit, OnDestroy {
   }
 
   getPlayerSelectionText(player: number): string {
-    if (player === 1 && this.player1Selection) {
+    if (player === 1 && this.player1Selection !== undefined) {
       return RockPaperScissorsType[this.player1Selection];
-    } else if (player === 2 && this.player2Selection) {
+    } else if (player === 2 && this.player2Selection !== undefined) {
       return RockPaperScissorsType[this.player2Selection];
     }
     return "";

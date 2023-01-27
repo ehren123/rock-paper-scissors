@@ -37,9 +37,9 @@
                     <p>{{game.player1Name}}</p>
                 </div>
                 <div class="row">
-                    <button mat-raised-button color="primary" (click)="setSelection(1, 0)">Rock</button>
-                    <button mat-raised-button color="primary" (click)="setSelection(1, 1)">Paper</button>
-                    <button mat-raised-button color="primary" (click)="setSelection(1, 2)">Scissors</button>
+                    <button mat-raised-button color="primary" (click)="setSelection(1, 0)" class="col">Rock</button>
+                    <button mat-raised-button color="primary" (click)="setSelection(1, 1)" class="col">Paper</button>
+                    <button mat-raised-button color="primary" (click)="setSelection(1, 2)" class="col">Scissors</button>
                 </div>
                 <div class="row">
                     <p>{{getPlayerSelectionText(1)}}</p>
@@ -50,9 +50,9 @@
                     <p>{{game.player2Name}}</p>
                 </div>
                 <div class="row">
-                    <button mat-raised-button color="primary" (click)="setSelection(2, 0)">Rock</button>
-                    <button mat-raised-button color="primary" (click)="setSelection(2, 1)">Paper</button>
-                    <button mat-raised-button color="primary" (click)="setSelection(2, 2)">Scissors</button>
+                    <button mat-raised-button color="accent" (click)="setSelection(2, 0)" class="col">Rock</button>
+                    <button mat-raised-button color="accent" (click)="setSelection(2, 1)" class="col">Paper</button>
+                    <button mat-raised-button color="accent" (click)="setSelection(2, 2)" class="col">Scissors</button>
                 </div>
                 <div class="row">
                     <p>{{getPlayerSelectionText(2)}}</p>
