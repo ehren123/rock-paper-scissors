@@ -2,7 +2,9 @@
     <div class="row">
         <mat-list role="list" *ngFor="let game of games">
             <mat-list-item role="listitem">
-                {{game.player1Name}} vs. {{game.player1Name}} Score: {{game.player1Score}}:{{game.player1Score}}
+               {{game.player1Name}} v {{game.player2Name}} Score: {{game.player1Score}}:{{game.player2Score}} 
+               <button mat-raised-button color="primary">Continue</button>
+               <button mat-raised-button color="warn">Delete</button>
             </mat-list-item>
         </mat-list>
     </div>

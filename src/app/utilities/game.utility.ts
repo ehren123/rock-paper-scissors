@@ -1,5 +1,3 @@
-
-import { orderBy } from "lodash";
 import store from "store2";
 import { v4 as uuidv4 } from "uuid";
 import { Game } from "../models/game";
@@ -32,8 +30,7 @@ export class GameUtility {
             created: new Date(),
         }
         GameUtility.setWinner(round);
-        game.rounds.push(round);
-        game.rounds = orderBy(game.rounds, ["created"], ["desc"]);
+        game.rounds.unshift(round);
         GameUtility.setScore(game);
         GameUtility.saveGame(game);
     }
@@ -81,10 +78,8 @@ export class GameUtility {
             const index = games.indexOf(currentGameFromStore);              
             games[index] = game;
         } else {
-            games.push(game);
+            games.unshift(game);
         }
-
-        games = orderBy(games, ["created"], ["desc"]);
     
         store(this._gameStoreKey, games);
     }
