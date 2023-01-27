@@ -14,10 +14,30 @@
             </form>
         </div>
         <div class="col-md-12">
-            <button mat-raised-button color="primary" [disabled]="!playerName">New game</button>
+            <button (click)="newGame()" mat-raised-button color="primary" [disabled]="!playerName">New game</button>
         </div>
     </div>
+    <br>
     <div *ngIf="game">
-
+        <div class="row">
+            <h2>Score: {{game.player1Name}} {{game.player1Score}} - {{game.player2Name}} {{game.player2Score}}</h2>
+            <h3>Draws: {{game.draws}}</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button mat-raised-button color="primary" (click)="rock()">Rock</button>
+                <button mat-raised-button color="primary" (click)="paper()">Paper</button>
+                <button mat-raised-button color="primary" (click)="scissors()">Scissors</button>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngFor="let result of getResults()">
+                <div class="col-md-12">
+                    <mat-card>
+                        <mat-card-content>{{result}}</mat-card-content>
+                    </mat-card>
+                </div>
+            </div>                  
+        </div>
     </div>
 </div>

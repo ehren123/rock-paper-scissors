@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Game } from '../models/game';
 import { PlayerType } from '../models/player-type';
+import { RockPaperScissorsType } from '../models/rock-paper-scissors-type';
 import { Round } from '../models/round';
 import { GameUtility } from '../utilities/game.utility';
 
@@ -27,18 +28,17 @@ export class GameService {
 
   public newGame(player1Name: string, player2Name: string, player1Type: PlayerType, player2Type: PlayerType): void {
     const game = GameUtility.newGame(player1Name, player2Name, player1Type, player2Type);
+    console.log(game);
     this.setGame(game);
   }
 
-  public addRound(round: Round) {
+  public addRound(player1Selection: RockPaperScissorsType, player2Selection: RockPaperScissorsType) {
     const game = this.getGame();
     if(!game) {
       throw new Error("No game in progress");
     }
 
-    GameUtility.setWinner(round);
-    game.rounds.push(round);
-    this.setGame(game);    
+    GameUtility.addRound(game, player1Selection, player2Selection);
   }
 
   public getSavedGames(): Game[] {
@@ -51,6 +51,10 @@ export class GameService {
 
   public clearSavedGames(): void {
     GameUtility.clearSavedGames();
+  }
+
+  public getComputerSelection(): RockPaperScissorsType {
+    return GameUtility.getComputerSelection();
   }
 
   private saveGame(): void {

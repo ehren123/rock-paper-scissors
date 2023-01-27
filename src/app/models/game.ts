@@ -9,6 +9,7 @@ export interface Game {
     player2Type: PlayerType;
     player1Score: number;
     player2Score: number;
+    draws: number;
     rounds: Round[];
     created: Date
 }

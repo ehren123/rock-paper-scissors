@@ -21,6 +21,7 @@ export class GameUtility {
             created: new Date(),
             player1Score: 0,
             player2Score: 0,
+            draws: 0
         };
     }
 
@@ -32,6 +33,7 @@ export class GameUtility {
         }
         GameUtility.setWinner(round);
         game.rounds.push(round);
+        game.rounds = orderBy(game.rounds, ["created"], ["desc"]);
         GameUtility.setScore(game);
     }
 
@@ -94,9 +96,13 @@ export class GameUtility {
     }
 
     public static setScore(game: Game): void {
+        let draws = 0;
         let player1Score = 0;
         let player2Score = 0;
         game.rounds.forEach(round => {
+            if(round.winner === 0) {
+                draws++;
+            }
             if (round.winner === 1) {
                 player1Score++;
             }
@@ -104,6 +110,7 @@ export class GameUtility {
                 player2Score++;
             }
         });
+        game.draws = draws;
         game.player1Score = player1Score;
         game.player2Score = player2Score;
     }
