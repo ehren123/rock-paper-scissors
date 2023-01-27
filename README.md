@@ -33,7 +33,6 @@ The UX uses angular material. While functional, the UX is unpolished.
 ## Ideas for further improvement
 If our goal was to improve the application, there is room for some improvements:
 * Add unit testing
-* Consider improving architecture, maybe seperate components and pages.
 * There are likely some public methods that could be made private.
 * UX needs some work
 * We could implement a backend to allow users to save their scores remotely.
