@@ -1,27 +1,39 @@
-# RockPaperScissors
+# Rock paper scissors
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
+## Features
+* Player versus Player
+* Player versus Computer
+* Games automatically saved
+* Games can be continued or deleted in the "See results" menu
 
-## Development server
+## Choice of application type
+While I was given the option to use any combination of front-end or back-end implementations, I went with a purely front-end solution for the following reasons:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Although I am a full stack engineer, I am more experienced with C# than python. I'm decent at python as well, but for this challenge, I didn't think this would be an effective use of time.
 
-## Code scaffolding
+2. All requirements are possible using browser storage. I didn't see much reason to build a backend in order to meet the requirements.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. I have been using angular for many years, and I am efficient with it.
 
-## Build
+## Technologies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* Angular material for UX related css.
+* Bootstrap grid for layout.
 
-## Running unit tests
+## Architecture
+The architecture was kept basic and simple. All components are in a componentns folder. 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The game logic is contained within src/app/utilities/game.utility.ts.
 
-## Running end-to-end tests
+State is managed through the service src/app/services/game.service.ts. The components interact with this service.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## UX
+The UX uses angular material. While functional, the UX is unpolished.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Ideas for further improvement
+If our goal was to improve the application, there is room for some improvements:
+* Add unit testing
+* Consider improving architecture, maybe seperate components and pages.
+* There are likely some public methods that could be made private.
+* UX needs some work
+* We could implement a backend to allow users to save their scores remotely.
