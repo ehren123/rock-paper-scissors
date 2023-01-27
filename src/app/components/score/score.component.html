@@ -1,0 +1,9 @@
+<div *ngIf="game" class="row">
+    <div *ngFor="let result of getResults()">
+        <div class="col-md-12">
+            <mat-card>
+                <mat-card-content>{{result}}</mat-card-content>
+            </mat-card>
+        </div>
+    </div>                  
+</div>

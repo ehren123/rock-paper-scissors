@@ -12,6 +12,7 @@ import { PlayerVersusPlayerComponent } from './components/player-versus-player/p
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { GameService } from './services/game.service';
 import { FormsModule } from '@angular/forms';
+import { ScoreComponent } from './components/score/score.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     ResultsComponent,
     PlayerVersusPlayerComponent,
     WelcomeComponent,
+    ScoreComponent,
   ],
   imports: [
     BrowserModule,

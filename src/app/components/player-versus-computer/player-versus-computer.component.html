@@ -30,14 +30,7 @@
                 <button mat-raised-button color="primary" (click)="scissors()">Scissors</button>
             </div>
         </div>
-        <div class="row">
-            <div *ngFor="let result of getResults()">
-                <div class="col-md-12">
-                    <mat-card>
-                        <mat-card-content>{{result}}</mat-card-content>
-                    </mat-card>
-                </div>
-            </div>                  
-        </div>
+        <br>
+        <app-score [game]="game"></app-score>
     </div>
 </div>
