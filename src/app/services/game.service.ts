@@ -13,10 +13,6 @@ export class GameService {
   private _gameSource = new BehaviorSubject<Game | undefined>(undefined);
   public game$ = this._gameSource.asObservable();
 
-  public setGame(game: Game) {
-    this._gameSource.next(game);
-  }
-
   public clearGame(): void {
     this._gameSource.next(undefined);
   }
@@ -50,5 +46,9 @@ export class GameService {
   public loadGame(gameId: string): void {
     const game = GameUtility.loadGame(gameId);
     this.setGame(game);
+  }
+
+  private setGame(game: Game): void {
+    this._gameSource.next(game);
   }
 }

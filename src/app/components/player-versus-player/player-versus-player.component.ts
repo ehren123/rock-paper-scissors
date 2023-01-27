@@ -26,8 +26,7 @@ export class PlayerVersusPlayerComponent implements OnInit, OnDestroy {
   player2Selection: RockPaperScissorsType | undefined;
 
   constructor(private gameService: GameService, private route: ActivatedRoute) {
-
-   }
+  }
 
   ngOnInit(): void {
     this.route.queryParams
