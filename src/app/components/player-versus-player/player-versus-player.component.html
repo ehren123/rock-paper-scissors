@@ -1,1 +1,65 @@
-<p>player-versus-player works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Player vs Player</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <mat-form-field>
+                    <mat-label>Enter player1 name</mat-label>
+                    <input matInput required [(ngModel)]="player1Name" name="playerName">
+                  </mat-form-field>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <form>
+                <mat-form-field>
+                    <mat-label>Enter player2 name</mat-label>
+                    <input matInput required [(ngModel)]="player2Name" name="playerName">
+                  </mat-form-field>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <button (click)="newGame()" mat-raised-button color="primary" [disabled]="!player1Name || !player2Name">New game</button>
+        </div>
+    </div>
+    <br>
+    <div *ngIf="game">
+        <div class="row">
+            <h2>Score: {{game.player1Name}} {{game.player1Score}} - {{game.player2Name}} {{game.player2Score}}</h2>
+            <h3>Draws: {{game.draws}}</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <p>{{game.player1Name}}</p>
+                </div>
+                <div class="row">
+                    <button mat-raised-button color="primary" (click)="setSelection(1, 0)">Rock</button>
+                    <button mat-raised-button color="primary" (click)="setSelection(1, 1)">Paper</button>
+                    <button mat-raised-button color="primary" (click)="setSelection(1, 2)">Scissors</button>
+                </div>
+                <div class="row">
+                    <p>{{getPlayerSelectionText(1)}}</p>
+                </div>            
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <p>{{game.player2Name}}</p>
+                </div>
+                <div class="row">
+                    <button mat-raised-button color="primary" (click)="setSelection(2, 0)">Rock</button>
+                    <button mat-raised-button color="primary" (click)="setSelection(2, 1)">Paper</button>
+                    <button mat-raised-button color="primary" (click)="setSelection(2, 2)">Scissors</button>
+                </div>
+                <div class="row">
+                    <p>{{getPlayerSelectionText(2)}}</p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <app-score [game]="game"></app-score>
+    </div>
+</div>
