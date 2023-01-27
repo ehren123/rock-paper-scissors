@@ -30,7 +30,6 @@ export class PlayerVersusComputerComponent implements OnInit, OnDestroy {
       const id = params['id'];
       if(id) {
         this.gameService.loadGame(id);
-        console.log(id);
       } else {
         this.gameService.clearGame();
       }

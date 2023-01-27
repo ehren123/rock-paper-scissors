@@ -59,7 +59,6 @@ export class PlayerVersusPlayerComponent implements OnInit, OnDestroy {
   }
 
   setSelection(player: number, selection: RockPaperScissorsType): void {
-    console.log(player, selection);
     if(player === 1) {
       this.player1Selection = selection;
     } else if(player === 2) {

@@ -14,7 +14,6 @@ export class ScoreComponent {
   getResults(): string[]{
     const results = [];
     if(this.game) {
-
       for(const round of this.game.rounds) {
         let text = `${RockPaperScissorsType[round.player1Selection as RockPaperScissorsType]} vs ${RockPaperScissorsType[round.player2Selection as RockPaperScissorsType]} : `;
         if(round.winner === 0) {

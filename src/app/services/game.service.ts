@@ -23,12 +23,11 @@ export class GameService {
 
   public newGame(player1Name: string, player2Name: string, player1Type: PlayerType, player2Type: PlayerType): void {
     const game = GameUtility.newGame(player1Name, player2Name, player1Type, player2Type);
-    console.log(game);
     this.setGame(game);
   }
 
   public addRound(player1Selection: RockPaperScissorsType, player2Selection: RockPaperScissorsType) {
-    const game = this.getGame();
+    const game = this._gameSource.value;
     if(!game) {
       throw new Error("No game in progress");
     }
@@ -51,9 +50,5 @@ export class GameService {
   public loadGame(gameId: string): void {
     const game = GameUtility.loadGame(gameId);
     this.setGame(game);
-  }
-
-  private getGame(): Game | undefined {
-    return this._gameSource.value;
   }
 }
