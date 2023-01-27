@@ -56,6 +56,11 @@ export class GameService {
     return GameUtility.getComputerSelection();
   }
 
+  public loadGame(gameId: string): void {
+    const game = GameUtility.loadGame(gameId);
+    this.setGame(game);
+  }
+
   private saveGame(): void {
     const game = this.getGame();
     if(!game) {

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Subject, take, takeUntil } from 'rxjs';
 import { Game } from 'src/app/models/game';
 import { PlayerType } from 'src/app/models/player-type';
 import { RockPaperScissorsType } from 'src/app/models/rock-paper-scissors-type';
@@ -24,18 +25,29 @@ export class PlayerVersusPlayerComponent implements OnInit, OnDestroy {
 
   player2Selection: RockPaperScissorsType | undefined;
 
-  constructor(private gameService: GameService) {
+  constructor(private gameService: GameService, private route: ActivatedRoute) {
 
    }
 
   ngOnInit(): void {
-    this.gameService.clearGame();
+    this.route.queryParams
+      .pipe(take(1))
+      .subscribe(params => {
+        const id = params['id'];
+        if(id) {
+          this.gameService.loadGame(id);
+        } else {
+          this.gameService.clearGame();
+        }
+      });
+
     this.gameService.game$
       .pipe(takeUntil(this.destroy))
       .subscribe(game => this.game = game)
   }
 
   ngOnDestroy(): void {
+    this.gameService.clearGame();
     this.destroy.next();
     this.destroy.complete();
   }

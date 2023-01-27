@@ -120,4 +120,15 @@ export class GameUtility {
         game.player1Score = player1Score;
         game.player2Score = player2Score;
     }
+
+    public static loadGame(gameId: string): Game {
+        const gamesFromStore = store(this._gameStoreKey) as Game[];
+        if (gamesFromStore) {
+            const game = gamesFromStore.find(x => x.id === gameId);
+            if (game) {
+                return game;
+            }
+        }
+        throw new Error("Game not found");
+    }
 }

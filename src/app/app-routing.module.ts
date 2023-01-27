@@ -7,7 +7,9 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 
 const routes: Routes = [
   { path: 'player-versus-player', component: PlayerVersusPlayerComponent, pathMatch: 'full' },
+  { path: 'player-versus-player/:id', component: PlayerVersusPlayerComponent },
   { path: 'player-versus-computer', component: PlayerVersusComputerComponent, pathMatch: 'full' },
+  { path: 'player-versus-computer/:id', component: PlayerVersusComputerComponent },
   { path: 'results', component: ResultsComponent, pathMatch: 'full' },
   { path: 'welcome', component: WelcomeComponent, pathMatch: 'full'},
   { path: '**', redirectTo: '/welcome', pathMatch: 'full' },
