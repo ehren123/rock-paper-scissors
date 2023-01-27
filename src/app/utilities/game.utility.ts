@@ -35,6 +35,7 @@ export class GameUtility {
         game.rounds.push(round);
         game.rounds = orderBy(game.rounds, ["created"], ["desc"]);
         GameUtility.setScore(game);
+        GameUtility.saveGame(game);
     }
 
     public static getComputerSelection(): RockPaperScissorsType {
@@ -70,11 +71,21 @@ export class GameUtility {
     public static saveGame(game: Game): void {
         let games: Game[] = [];
         const gamesFromStore = store(this._gameStoreKey) as Game[];
+
         if (gamesFromStore) {
             games = gamesFromStore;
         }
-        games.push(game);
+
+        const currentGameFromStore = games.find(x => x.id === game.id);
+        if (currentGameFromStore) {            
+            const index = games.indexOf(currentGameFromStore);              
+            games[index] = game;
+        } else {
+            games.push(game);
+        }
+
         games = orderBy(games, ["created"], ["desc"]);
+    
         store(this._gameStoreKey, games);
     }
 
