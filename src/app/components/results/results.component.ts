@@ -17,7 +17,7 @@ export class ResultsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.games = this.gameService.getSavedGames();    
+    this.games = this.gameService.getSavedGames(); 
   }
 
   continue(game: Game): void {
