@@ -59,15 +59,6 @@ export class GameUtility {
         return 2;
     }
 
-    private static setWinner(round: Round): void {
-        if(Number.isNaN(round.player1Selection) || Number.isNaN(round.player2Selection)) {
-            throw new Error("Invalid round");
-        }
-
-        round.winner = this.getWinner(round.player1Selection as RockPaperScissorsType, 
-            round.player2Selection as RockPaperScissorsType);
-    }
-
     public static getSavedGames(): Game[] {
         const gamesFromStore = store(this._gameStoreKey) as Game[];
         return gamesFromStore ?? [];
@@ -94,6 +85,15 @@ export class GameUtility {
             }
         }
         throw new Error("Game not found");
+    }
+
+    private static setWinner(round: Round): void {
+        if(Number.isNaN(round.player1Selection) || Number.isNaN(round.player2Selection)) {
+            throw new Error("Invalid round");
+        }
+
+        round.winner = this.getWinner(round.player1Selection as RockPaperScissorsType, 
+            round.player2Selection as RockPaperScissorsType);
     }
 
     private static setScore(game: Game): void {
