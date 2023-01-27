@@ -11,6 +11,7 @@ import { ResultsComponent } from './components/results/results.component';
 import { PlayerVersusPlayerComponent } from './components/player-versus-player/player-versus-player.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { GameService } from './services/game.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { GameService } from './services/game.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,

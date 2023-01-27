@@ -1,1 +1,23 @@
-<p>player-versus-computer works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Player vs Computer</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form>
+                <mat-form-field>
+                    <mat-label>Enter your name</mat-label>
+                    <input matInput required [(ngModel)]="playerName" name="playerName">
+                  </mat-form-field>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <button mat-raised-button color="primary" [disabled]="!playerName">New game</button>
+        </div>
+    </div>
+    <div *ngIf="game">
+
+    </div>
+</div>
