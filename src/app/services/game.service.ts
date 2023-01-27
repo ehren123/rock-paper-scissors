@@ -16,10 +16,6 @@ export class GameService {
   public setGame(game: Game) {
     this._gameSource.next(game);
   }
-  
-  public getGame(): Game | undefined {
-    return this._gameSource.value;
-  }
 
   public clearGame(): void {
     this._gameSource.next(undefined);
@@ -48,10 +44,6 @@ export class GameService {
     GameUtility.deleteGame(gameId);
   }
 
-  public clearSavedGames(): void {
-    GameUtility.clearSavedGames();
-  }
-
   public getComputerSelection(): RockPaperScissorsType {
     return GameUtility.getComputerSelection();
   }
@@ -61,11 +53,7 @@ export class GameService {
     this.setGame(game);
   }
 
-  private saveGame(): void {
-    const game = this.getGame();
-    if(!game) {
-      throw new Error("No game in progress");
-    }
-    GameUtility.saveGame(game);
+  private getGame(): Game | undefined {
+    return this._gameSource.value;
   }
 }

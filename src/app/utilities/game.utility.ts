@@ -29,8 +29,11 @@ export class GameUtility {
             player2Selection: player2Selection,
             created: new Date(),
         }
+        
         GameUtility.setWinner(round);
+        
         game.rounds.unshift(round);
+        
         GameUtility.setScore(game);
         GameUtility.saveGame(game);
     }
@@ -56,32 +59,13 @@ export class GameUtility {
         return 2;
     }
 
-    public static setWinner(round: Round): void {
+    private static setWinner(round: Round): void {
         if(Number.isNaN(round.player1Selection) || Number.isNaN(round.player2Selection)) {
             throw new Error("Invalid round");
         }
 
         round.winner = this.getWinner(round.player1Selection as RockPaperScissorsType, 
             round.player2Selection as RockPaperScissorsType);
-    }
-    
-    public static saveGame(game: Game): void {
-        let games: Game[] = [];
-        const gamesFromStore = store(this._gameStoreKey) as Game[];
-
-        if (gamesFromStore) {
-            games = gamesFromStore;
-        }
-
-        const currentGameFromStore = games.find(x => x.id === game.id);
-        if (currentGameFromStore) {            
-            const index = games.indexOf(currentGameFromStore);              
-            games[index] = game;
-        } else {
-            games.unshift(game);
-        }
-    
-        store(this._gameStoreKey, games);
     }
 
     public static getSavedGames(): Game[] {
@@ -101,7 +85,18 @@ export class GameUtility {
         store.remove(this._gameStoreKey);
     }
 
-    public static setScore(game: Game): void {
+    public static loadGame(gameId: string): Game {
+        const gamesFromStore = store(this._gameStoreKey) as Game[];
+        if (gamesFromStore) {
+            const game = gamesFromStore.find(x => x.id === gameId);
+            if (game) {
+                return game;
+            }
+        }
+        throw new Error("Game not found");
+    }
+
+    private static setScore(game: Game): void {
         let draws = 0;
         let player1Score = 0;
         let player2Score = 0;
@@ -121,14 +116,22 @@ export class GameUtility {
         game.player2Score = player2Score;
     }
 
-    public static loadGame(gameId: string): Game {
+    private static saveGame(game: Game): void {
+        let games: Game[] = [];
         const gamesFromStore = store(this._gameStoreKey) as Game[];
+
         if (gamesFromStore) {
-            const game = gamesFromStore.find(x => x.id === gameId);
-            if (game) {
-                return game;
-            }
+            games = gamesFromStore;
         }
-        throw new Error("Game not found");
+
+        const currentGameFromStore = games.find(x => x.id === game.id);
+        if (currentGameFromStore) {            
+            const index = games.indexOf(currentGameFromStore);              
+            games[index] = game;
+        } else {
+            games.unshift(game);
+        }
+    
+        store(this._gameStoreKey, games);
     }
 }
