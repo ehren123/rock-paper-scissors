@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { Game } from 'src/app/models/game';
 import { PlayerType } from 'src/app/models/player-type';
 import { RockPaperScissorsType } from 'src/app/models/rock-paper-scissors-type';
-import { Round } from 'src/app/models/round';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -10,7 +10,9 @@ import { GameService } from 'src/app/services/game.service';
   templateUrl: './player-versus-computer.component.html',
   styleUrls: ['./player-versus-computer.component.scss']
 })
-export class PlayerVersusComputerComponent implements OnInit {
+export class PlayerVersusComputerComponent implements OnInit, OnDestroy {
+
+  destroy = new Subject<void>();
 
   game: Game | undefined;
 
@@ -21,11 +23,15 @@ export class PlayerVersusComputerComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.gameService.clearGame();
     this.gameService.game$
-      .subscribe(game => {
-        this.game = game
-        console.log(game);
-      })
+      .pipe(takeUntil(this.destroy))
+      .subscribe(game => this.game = game)
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   newGame(): void {

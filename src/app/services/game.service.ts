@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 import { Game } from '../models/game';
 import { PlayerType } from '../models/player-type';
 import { RockPaperScissorsType } from '../models/rock-paper-scissors-type';
-import { Round } from '../models/round';
 import { GameUtility } from '../utilities/game.utility';
 
 @Injectable({
